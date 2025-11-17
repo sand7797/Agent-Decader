@@ -12,7 +12,6 @@ if mode == "radio" then
 end
 
 function playdate.update()
-  --BG
   gfx.setColor(gfx.kColorBlack)
   gfx.fillRect(0, 0, 400, 240)
   -- If radio
