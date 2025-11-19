@@ -99,7 +99,7 @@ function phoneUpdate()
 
 
     --pickup phone
-    if playdate.buttonJustPressed(playdate.kButtonUp) then
+    if playdate.buttonJustPressed(playdate.kButtonUp) and not pickedUp then
     --479-8842
       pickedUp = true;
       failSound:play() 
@@ -112,8 +112,8 @@ function phoneUpdate()
   if pickedUp then
     backgroundPicked:draw(0,0)
     sceneManagerEnabled = false
-    if playdate.getElapsedTime() > 11 then
-    sceneManagerEnabled = true
+    if playdate.getElapsedTime() > 11.5 then
+      sceneManagerEnabled = true
       pickedUp = false
     end
   end
