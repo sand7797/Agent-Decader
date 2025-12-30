@@ -36,7 +36,7 @@ MonoBehaviour:
     defaultState: 1
   noiseIntensity:
     overrideState: 1
-    value: 0
+    value: 0.523
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51,3 +51,51 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Postprocessing.Runtime::UnityEngine.Rendering.PostProcessing.PostProcessProfile
   settings:
   - {fileID: -6441569037275147019}
+  - {fileID: 223907491221935837}
+--- !u!114 &223907491221935837
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48a79b01ea5641d4aa6daa2e23605641, type: 3}
+  m_Name: Bloom
+  m_EditorClassIdentifier: Unity.Postprocessing.Runtime::UnityEngine.Rendering.PostProcessing.Bloom
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 1
+  intensity:
+    overrideState: 1
+    value: 15.2
+  threshold:
+    overrideState: 1
+    value: 10.6
+  softKnee:
+    overrideState: 1
+    value: 0.555
+  clamp:
+    overrideState: 1
+    value: 65472.99
+  diffusion:
+    overrideState: 1
+    value: 10
+  anamorphicRatio:
+    overrideState: 1
+    value: -0.23
+  color:
+    overrideState: 1
+    value: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 1}
+  fastMode:
+    overrideState: 1
+    value: 0
+  dirtTexture:
+    overrideState: 1
+    value: {fileID: 0}
+    defaultState: 1
+  dirtIntensity:
+    overrideState: 1
+    value: 0
