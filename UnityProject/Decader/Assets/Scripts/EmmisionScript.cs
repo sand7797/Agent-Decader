@@ -1,46 +1,48 @@
 using UnityEngine;
 using System.Collections;
 
-public class EmmisionScript : MonoBehaviour
+public class EmissionScript : MonoBehaviour
 {
     public Material material;
     public float unitTime = 0.2f;
     public float bloomMultiplier = 0.5f;
-    public enum MorseMessage
-    {
-        RAND1,
-        RAND2,
-        RADIO
-    }
-    public MorseMessage message;
+
+    [TextArea]
+    public string morsePattern = "/-.- . ... -/... -.- .-. .. -. --./";
 
     void Start()
     {
-        StartCoroutine(RADIO());
+        StartCoroutine(PlayMorse(morsePattern));
     }
 
-    IEnumerator RADIO()
+    IEnumerator PlayMorse(string pattern)
     {
         while (true)
         {
-            
-            yield return Dot();
-            yield return Dot();
-            yield return Dot();
+            foreach (char c in pattern)
+            {
+                switch (c)
+                {
+                    case '.':
+                        yield return Dot();
+                        break;
 
-            yield return LetterGap();
+                    case '-':
+                        yield return Dash();
+                        break;
 
-            yield return Dash();
-            yield return Dash();
-            yield return Dash();
+                    case ' ':
+                        yield return LetterGap();
+                        break;
 
-            yield return LetterGap();
+                    case '/':
+                        yield return WordGap();
+                        break;
 
-            yield return Dot();
-            yield return Dot();
-            yield return Dot();
-
-            yield return WordGap();
+                    default:
+                        break;
+                }
+            }
         }
     }
 

@@ -11,7 +11,6 @@ public class CameraBehaviour : MonoBehaviour
     public float funcBx = 0.3f;
 
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         Cursor.visible = false;
@@ -19,8 +18,6 @@ public class CameraBehaviour : MonoBehaviour
         rotX = transform.eulerAngles.x;
         rotY = transform.eulerAngles.y;
     }
-
-    // Update is called once per frame
 
     void Update()
         {
