@@ -1,5 +1,6 @@
 -- Import libs
 import "CoreLibs/graphics"
+import "CoreLibs/timer"
 import "globals"
 import "icons"
 
@@ -12,9 +13,10 @@ sceneManagerEnabled = true
 import "morse"
 import "phone"
 import "radio"
+import "fax"
 
 -- Mode options
-modes = {"phone", "radio", "morse"}
+modes = {"phone", "radio", "morse", "fax"}
 function init()
   if mode == "radio" then
     initRadio()
@@ -22,6 +24,8 @@ function init()
     initPhone()
   elseif mode == "morse" then
     initMorse()
+  elseif mode == "fax" then
+    initFax()
   end
 end
 init()
@@ -37,6 +41,8 @@ function playdate.update()
     phoneUpdate()
   elseif mode == "morse" then
     morseUpdate()
+  elseif mode == "fax" then
+    faxUpdate()
   end
   --dPad.LR:draw(350, 200)
 end
@@ -51,7 +57,7 @@ function sceneManager()
       end
 
       if roomindex < 1 then roomindex = 1 end
-      if roomindex > 3 then roomindex = 3 end
+      if roomindex > 4 then roomindex = 4 end
       mode = modes[roomindex]
       init()
     end
