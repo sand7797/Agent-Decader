@@ -1,10 +1,11 @@
 import "CoreLibs/graphics"
-
 function initRadio()
+  radioStatic = sfx.sampleplayer.new("audio/static.wav")
   background = gfx.image.new("images/radio.png")
   knob = gfx.image.new("images/knob.png")
   minValue = 70
   maxValue = 360
+  radio1 = playdate.sound.fileplayer.new("audio/radio1.mp3")
 end
 
 function radioUpdate()
@@ -29,10 +30,27 @@ function radioUpdate()
   background:draw(0,0)
   -- Knob
   knob:drawRotated(230,180,radioCrankValue)
+
+  -- Text
+  gfx.setImageDrawMode(gfx.kDrawModeInverted)
+  gfx.drawTextAligned(tostring(math.floor(radioCrankValue)) .. " kHz", 200, 10, kTextAlignment.center)
+  gfx.setImageDrawMode(gfx.kDrawModeCopy)
+
+  if playdate.buttonIsPressed(playdate.kButtonA) then
+    if not radioStatic:isPlaying() then
+      -- TILFØJ SIDSTE RADIODISAMTALER
+    if math.floor(radioCrankValue) == 97 and not hasRadioPlayed then
+	hasRadioPlayed = true
+	radio1:play()
+      else
+	radioStatic:play()
+      end
+    end
+  end
+
 end
 
 -- Norm func
 function normalize(x, a, b, c, d)
     return c + (x - a) * (d - c) / (b - a)
 end
-
