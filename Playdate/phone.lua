@@ -23,6 +23,12 @@ function initPhone()
   minValue = 359
   maxValue = 43
   newValue = crankValue
+
+  phoneWait = 1
+
+  phoneCall0 = sfx.fileplayer.new("audio/phone1.mp3")
+  phoneCall1 = sfx.fileplayer.new("audio/phone2.mp3")
+  phoneCall2 = sfx.fileplayer.new("audio/phone3.mp3")
 end
 
 function playdate.cranked(change)
@@ -100,9 +106,25 @@ function phoneUpdate()
 
     --pickup phone
     if playdate.buttonJustPressed(playdate.kButtonUp) and not pickedUp then
-    --479-8842
+      if phoneNumber == "148842" then
+	phoneCall0:play()
+	if faxStatus.current == 1 then
+	  faxStatus.enabled = true
+	end
+	phoneWait = 65
+      elseif phoneNumber == "204511" then
+	phoneWait = 81
+	phoneCall1:play()
+      elseif phoneNumber == "364467" then
+	phoneWait = 113
+	phoneCall2:play()
+	faxStatus.current = 2
+	faxStatus.ran = false
+      else
+	failSound:play() 
+	phoneWait = 11.5
+      end
       pickedUp = true;
-      failSound:play() 
       phoneNumber = ""
       playdate.resetElapsedTime()
     end
@@ -112,7 +134,7 @@ function phoneUpdate()
   if pickedUp then
     backgroundPicked:draw(0,0)
     sceneManagerEnabled = false
-    if playdate.getElapsedTime() > 11.5 then
+    if playdate.getElapsedTime() > phoneWait then
       sceneManagerEnabled = true
       pickedUp = false
     end
